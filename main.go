@@ -23,6 +23,11 @@ type Dim struct {
 }
 
 var dims = []Dim{
+	// Dim{name: "iphone_settings", pointSize: 29, scale: []string{"1x", "2x", "3x"}},
+	// Dim{name: "iphone_spotlight", pointSize: 40, scale: []string{"1x", "2x", "3x"}},
+	// Dim{name: "iphone_app", pointSize: 60, scale: []string{"1x", "2x", "3x"}},
+	// Dim{name: "iphone_spotlight", pointSize: 60, scale: []string{"1x", "2x", "3x"}},
+
 	Dim{name: "ipad_settings", pointSize: 29, scale: []string{"1x", "2x"}},
 	Dim{name: "ipad_spotlight", pointSize: 40, scale: []string{"1x", "2x"}},
 	Dim{name: "ipad_spotlight", pointSize: 50, scale: []string{"1x", "2x"}},
