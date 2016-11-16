@@ -23,15 +23,17 @@ type Dim struct {
 }
 
 var dims = []Dim{
-	// Dim{name: "iphone_settings", pointSize: 29, scale: []string{"1x", "2x", "3x"}},
-	// Dim{name: "iphone_spotlight", pointSize: 40, scale: []string{"1x", "2x", "3x"}},
-	// Dim{name: "iphone_app", pointSize: 60, scale: []string{"1x", "2x", "3x"}},
-	// Dim{name: "iphone_spotlight", pointSize: 60, scale: []string{"1x", "2x", "3x"}},
+	Dim{name: "iphone_notifications", pointSize: 20, scale: []string{"1x", "2x", "3x"}},
+	Dim{name: "iphone_settings", pointSize: 29, scale: []string{"1x", "2x", "3x"}},
+	Dim{name: "iphone_spotlight", pointSize: 40, scale: []string{"1x", "2x", "3x"}},
+	Dim{name: "iphone_app", pointSize: 60, scale: []string{"1x", "2x", "3x"}},
+	Dim{name: "iphone_spotlight", pointSize: 60, scale: []string{"1x", "2x", "3x"}},
 
-	Dim{name: "ipad_settings", pointSize: 29, scale: []string{"1x", "2x"}},
-	Dim{name: "ipad_spotlight", pointSize: 40, scale: []string{"1x", "2x"}},
+	// redundant
+	// Dim{name: "ipad_notifications", pointSize: 20, scale: []string{"1x", "2x", "3x"}},
+	// Dim{name: "ipad_settings", pointSize: 29, scale: []string{"1x", "2x", "3x"}},
+	// Dim{name: "ipad_spotlight", pointSize: 40, scale: []string{"1x", "2x", "3x"}},
 	Dim{name: "ipad_spotlight", pointSize: 50, scale: []string{"1x", "2x"}},
-	Dim{name: "ipad_app", pointSize: 72, scale: []string{"1x", "2x"}},
 	Dim{name: "ipad_app", pointSize: 76, scale: []string{"1x", "2x"}},
 	Dim{name: "ipad_pro_app", pointSize: 83.5, scale: []string{"2x"}},
 	Dim{name: "itunes_connect_icon", pointSize: 1024, scale: []string{"1x"}},
