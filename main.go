@@ -15,6 +15,7 @@ import (
 )
 
 var imagePath = flag.String("i", "", "Path to image")
+var messages = flag.Bool("m", false, "Is a messages icon")
 
 type Dim struct {
 	name      string   // prefix for outout file
@@ -23,26 +24,31 @@ type Dim struct {
 }
 
 var dims = []Dim{
-	Dim{name: "iphone_notifications", pointSize: 20, scale: []string{"1x", "2x", "3x"}},
-	Dim{name: "iphone_settings", pointSize: 29, scale: []string{"1x", "2x", "3x"}},
-	Dim{name: "iphone_spotlight", pointSize: 40, scale: []string{"1x", "2x", "3x"}},
-	Dim{name: "iphone_app", pointSize: 60, scale: []string{"1x", "2x", "3x"}},
-	Dim{name: "iphone_spotlight", pointSize: 60, scale: []string{"1x", "2x", "3x"}},
-
-	// redundant
-	// Dim{name: "ipad_notifications", pointSize: 20, scale: []string{"1x", "2x", "3x"}},
-	// Dim{name: "ipad_settings", pointSize: 29, scale: []string{"1x", "2x", "3x"}},
-	// Dim{name: "ipad_spotlight", pointSize: 40, scale: []string{"1x", "2x", "3x"}},
-	Dim{name: "ipad_spotlight", pointSize: 50, scale: []string{"1x", "2x"}},
-	Dim{name: "ipad_app", pointSize: 76, scale: []string{"1x", "2x"}},
-	Dim{name: "ipad_pro_app", pointSize: 83.5, scale: []string{"2x"}},
-	Dim{name: "itunes_connect_icon", pointSize: 1024, scale: []string{"1x"}},
+	Dim{name: "20pt", pointSize: 20, scale: []string{"1x", "2x", "3x"}},
+	Dim{name: "29pt", pointSize: 29, scale: []string{"1x", "2x", "3x"}},
+	Dim{name: "40pt", pointSize: 40, scale: []string{"1x", "2x", "3x"}},
+	Dim{name: "60pt", pointSize: 60, scale: []string{"2x", "3x"}},
+	Dim{name: "76pt", pointSize: 76, scale: []string{"1x", "2x"}},
+	Dim{name: "85.5pt", pointSize: 83.5, scale: []string{"2x"}},
+	Dim{name: "1024pt", pointSize: 1024, scale: []string{"1x"}},
 }
 
 func main() {
 	flag.Parse()
 	var _ = resize.Resize
 	var path = *imagePath
+	var isMessagesIcon = *messages
+
+	if isMessagesIcon {
+		dims = []Dim{
+			Dim{name: "60x45pt", pointSize: 60, scale: []string{"2x", "3x"}},
+			Dim{name: "67x50pt", pointSize: 67, scale: []string{"2x"}},
+			Dim{name: "74x55pt", pointSize: 74, scale: []string{"2x"}},
+			Dim{name: "27x20pt", pointSize: 27, scale: []string{"2x", "3x"}},
+			Dim{name: "32x24pt", pointSize: 32, scale: []string{"2x", "3x"}},
+			Dim{name: "1024x768pt", pointSize: 1024, scale: []string{"1x"}},
+		}
+	}
 
 	if len(path) == 0 {
 		return
@@ -79,15 +85,15 @@ func main() {
 			case "1x":
 				outPath = fmt.Sprintf("%v%v", outPath, fExt)
 				var dimxy = uint(dim.pointSize)
-				newImg = resize.Resize(dimxy, dimxy, img, resize.Lanczos3)
+				newImg = resize.Resize(dimxy, 0, img, resize.Lanczos3)
 			case "2x":
 				outPath = fmt.Sprintf("%v@2x%v", outPath, fExt)
 				var dimxy = uint(dim.pointSize * 2)
-				newImg = resize.Resize(dimxy, dimxy, img, resize.Lanczos3)
+				newImg = resize.Resize(dimxy, 0, img, resize.Lanczos3)
 			case "3x":
 				outPath = fmt.Sprintf("%v@3x%v", outPath, fExt)
 				var dimxy = uint(dim.pointSize * 3)
-				newImg = resize.Resize(dimxy, dimxy, img, resize.Lanczos3)
+				newImg = resize.Resize(dimxy, 0, img, resize.Lanczos3)
 			default:
 				fmt.Println("Unrecognized scaling factor", scale)
 			}
